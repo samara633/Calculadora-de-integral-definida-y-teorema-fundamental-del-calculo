@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱Calculadora</title>
+    <link rel="stylesheet" href="calculadora.css"> 
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>Calculadora de Integral Definida</h1>
+        <label for="function">Función:</label>
+        <input type="text" id="function" placeholder="Ejemplo: x^2 + 2x + 1">
+        <label for="lowerLimit">Límite Inferior (a):</label>
+        <input type="number" id="lowerLimit">
+        <label for="upperLimit">Límite Superior (b):</label>
+        <input type="number" id="upperLimit">
+        <button onclick="calculateIntegral()">Calcular</button>
+        <div id="result"></div>
+    </div>
+    <script src="calculadora.js"></script>
+</body>
+</html>
