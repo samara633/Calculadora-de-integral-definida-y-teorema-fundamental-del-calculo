@@ -11,8 +11,13 @@ function calculateIntegral() {
 
     try {
         // Parsear la función y calcular la integral definida
-        const f = new Function("x", `return ${functionInput}`);
-        const integralResult = integral(f, lowerLimit, upperLimit).toFixed(2);
+        const func = new Function("x", `
+            return ${functionInput
+                .replace(/sin/g, 'Math.sin')
+                .replace(/cos/g, 'Math.cos')
+                .replace(/tan/g, 'Math.tan')
+                .replace(/sqrt/g, 'Math.sqrt')}`);
+        const integralResult = integral(func, lowerLimit, upperLimit).toFixed(2);
 
         // Mostrar el resultado
         const resultElement = document.getElementById("result");
@@ -29,5 +34,6 @@ function integral(func, a, b, n = 1000) {
         const x = a + i * h;
         sum += func(x);
     }
-    return h * sum;
+    return h * (0.5 * func(a) + 0.5 * func(b) + sum - func(a));
 }
+  p
