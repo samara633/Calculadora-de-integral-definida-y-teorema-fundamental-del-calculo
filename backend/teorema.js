@@ -1,30 +1,43 @@
 function calcularIntegral() {
-    const funcion = document.getElementById('funcion').value;
-    const x0 = parseFloat(document.getElementById('limite_inf').value);
-    const x1 = parseFloat(document.getElementById('limite_sup').value);
+    const funcion = document.getElementById("funcion").value;
+    const limiteInferior = parseFloat(document.getElementById("limite_inf").value);
+    const limiteSuperior = parseFloat(document.getElementById("limite_sup").value);
 
+    // Validar entradas
+    if (isNaN(limiteInferior) || isNaN(limiteSuperior) || funcion.trim() === "") {
+        alert("Por favor, ingrese una función válida y límites numéricos.");
+        return;
+    }
 
     try {
-        // Compilar y simplificar la función ingresada
-        const compiledFunction = math.compile(math.simplify(funcion).toString());
+        // Parsear la función y calcular la integral definida
+        const func = new Function("x", `
+            return ${funcion
+                .replace(/sin/g, 'Math.sin')
+                .replace(/cos/g, 'Math.cos')
+                .replace(/tan/g, 'Math.tan')
+                .replace(/sqrt/g, 'Math.sqrt')}`);
+        
+        // Calcular la integral numérica utilizando el teorema fundamental del cálculo
+        const integralResult = calcularTeorema(func, limiteInferior, limiteSuperior).toFixed(2);
 
-
-        // Evaluar la función compilada en los puntos 'x0' y 'x1'
-        const resultAtX0 = compiledFunction.evaluate({ x: x0 });
-        const resultAtX1 = compiledFunction.evaluate({ x: x1 });
-
-
-        // Calcular la integral numérica
-        const result = math.simpson(compiledFunction, x0, x1);
-
-
-        // Mostrar el resultado en un formato más legible (opcional)
-        const formattedResult = math.format(result, { precision: 2 });
-        document.getElementById('resultado').innerText = `El resultado es ${formattedResult} (aproximadamente)`;
+        // Mostrar el resultado
+        const resultadoElemento = document.getElementById("resultado");
+        resultadoElemento.textContent = `La integral definida de ${funcion} en [${limiteInferior}, ${limiteSuperior}] es ${integralResult}`;
     } catch (error) {
-        // Loguear el mensaje de error en la consola del navegador
-        console.log(error);
-        // Mostrar el mensaje de error con alert
-        alert(`Error: ${error}`);
+        alert("Error al calcular la integral definida. Asegúrese de que la función sea válida.");
     }
+}
+
+function calcularTeorema(func, a, b, n = 1000) {
+    const h = (b - a) / n;
+    let sum = 0;
+
+    // Aplicar el teorema fundamental del cálculo
+    for (let i = 0; i < n; i++) {
+        const x = a + i * h;
+        sum += func(x);
+    }
+
+    return h * sum;
 }

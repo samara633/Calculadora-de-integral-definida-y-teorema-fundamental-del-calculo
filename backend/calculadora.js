@@ -36,4 +36,4 @@ function integral(func, a, b, n = 1000) {
     }
     return h * (0.5 * func(a) + 0.5 * func(b) + sum - func(a));
 }
-  p
+  
