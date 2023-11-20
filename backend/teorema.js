@@ -41,3 +41,9 @@ function calcularTeorema(func, a, b, n = 1000) {
 
     return h * sum;
 }
+function limpiarCalculadora() {
+    document.getElementById('funcion').value = '';
+    document.getElementById('limite_inf').value = '';
+    document.getElementById('limite_sup').value = '';
+    document.getElementById('resultado').innerText = '';
+}

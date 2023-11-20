@@ -1,0 +1,38 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://calculofacil.com/wp-content/uploads/2017/07/bg2.jpg') center/cover;
+}
+
+.calculator {
+    width: 400px;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.inicio-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 15px 30px;
+    margin: 20px;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #30cfd0, #330867);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.inicio-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}

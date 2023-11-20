@@ -36,4 +36,9 @@ function integral(func, a, b, n = 1000) {
     }
     return h * (0.5 * func(a) + 0.5 * func(b) + sum - func(a));
 }
-  
+function limpiarCalculadora() {
+    document.getElementById('function').value = '';
+    document.getElementById('lowerLimit').value = '';
+    document.getElementById('upperLimit').value = '';
+    document.getElementById('result').innerText = '';
+}
